@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour {
         newPosition.y = transform.position.y;
         transform.position = newPosition;
 
+        
+
     }
 
 }
