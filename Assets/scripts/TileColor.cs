@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Tile))]
 public class TileColor : MonoBehaviour {
 
 	public ColorOption color;
