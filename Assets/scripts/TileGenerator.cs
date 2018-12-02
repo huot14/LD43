@@ -28,6 +28,7 @@ public class TileGenerator : MonoBehaviour {
 				Debug.Log ((z * columns) + x);
 				tile.transform.SetParent (parent.transform);
 				tile.transform.position = new Vector3(x * separationMultiplier, 0, z * separationMultiplier);
+                tile.layer = 8;
 			}
 		}
 
