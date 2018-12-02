@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface ScoreCalculator {
+	int score ();
+}
+
 [System.Serializable]
 public class Level : MonoBehaviour {
 
@@ -14,6 +18,17 @@ public class Level : MonoBehaviour {
 	public GameObject playerPrefab;
 	public Transform player;
 
+	/*This Object MUST implement ScoreCalculator*/
+	public Object scoreCalculator;
+	public int score {
+		get {
+			if (scoreCalculator != null) {
+				var calc = scoreCalculator as ScoreCalculator;
+				return calc.score ();
+			}
+			return 0;
+		}
+	}
 	public GameObject[] prisoners;
     public GameObject trapMarkerPrefab;
 
@@ -42,6 +57,7 @@ public class Level : MonoBehaviour {
 		Level.instance = this;
 		Debug.Log ("Start is " + start.name);
 		Debug.Log ("End is " + end.name);
+		Debug.Log ("Score is " + this.score);
 
 		this.current = start;
 		this.total_prisoners = this.prisoners.Length;
@@ -139,17 +155,7 @@ public class Level : MonoBehaviour {
                     StartCoroutine(Teleport(this.player.gameObject, newPosition, to));
                 }
 
-                /*Trigger Traps!*/
-                //var traps = to.GetComponents<Trap>();
-                //foreach (var trap in traps)
-                //{
-                //    if (!trap.activated())
-                //    {
-                //        trap.activate();
-                //    }
-                //}
-
-                    return true; ;
+                    return true;
             }
         }
 		return false;
