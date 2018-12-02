@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 
@@ -70,6 +71,11 @@ public class Tile : MonoBehaviour {
 	void OnDrawGizmosSelected() {
 		Transform transform = this.GetComponent<Transform> ();
 		Gizmos.DrawSphere (transform.position - this.center, 0.1f);
+
+		foreach (ValidMove candidate in this.candidateMoves()) {
+			Handles.color = Color.red;
+			Handles.DrawLine (this.transform.position, candidate.tile.transform.position);
+		}
 	}
 
 }
