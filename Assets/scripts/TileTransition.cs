@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Trap {
-	bool activated();
-	void activate();
-	
+public class TileTransition : MonoBehaviour {
+
+	public ColorOption[] allowed;
 }
-	

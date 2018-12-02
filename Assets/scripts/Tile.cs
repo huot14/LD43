@@ -17,6 +17,8 @@ public enum MovementType {
 	TELEPORT,
 }
 
+
+
 public struct ValidMove {
 	public Tile tile;
 	public MovementType type;
@@ -33,7 +35,6 @@ public class Tile : MonoBehaviour {
 
 	/*Relative to the current position*/
 	public Vector3 center;
-	public Color color;
 
 	public HashSet<ValidMove> candidateMoves() {
 		HashSet<ValidMove> set = new HashSet<ValidMove>();
@@ -73,8 +74,28 @@ public class Tile : MonoBehaviour {
 		Gizmos.DrawSphere (transform.position - this.center, 0.1f);
 
 		foreach (ValidMove candidate in this.candidateMoves()) {
-			Handles.color = Color.red;
+			Handles.color = Color.cyan;
 			Handles.DrawLine (this.transform.position, candidate.tile.transform.position);
+		}
+
+		//Handles.color = Color.blue;
+		Gizmos.color = Color.red;
+		if (this.GetComponents<Trap>().Length > 0) {
+			Vector3 _from = this.transform.position;
+			_from.x = _from.x - 0.25f;
+			_from.z = _from.z - 0.25f;
+			Vector3 _to = this.transform.position;
+			_to.x = _to.x + 0.25f;
+			_to.z = _to.z + 0.25f;
+			Gizmos.DrawLine (_from, _to);
+
+			_from = this.transform.position;
+			_from.x = _from.x - 0.25f;
+			_from.z = _from.z + 0.25f;
+			_to = this.transform.position;
+			_to.x = _to.x + 0.25f;
+			_to.z = _to.z - 0.25f;
+			Gizmos.DrawLine (_from, _to);
 		}
 	}
 
