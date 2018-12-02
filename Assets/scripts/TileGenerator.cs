@@ -21,6 +21,7 @@ public class TileGenerator : MonoBehaviour {
             {
                 GameObject tile = GameObject.Instantiate(tilePrefab);
                 tile.transform.position = new Vector3(x * separationMultiplier, 0, z * separationMultiplier);
+                tile.layer = 8;
             }
         }
 
