@@ -110,11 +110,16 @@ public class Level : MonoBehaviour {
 
 	public bool movePlayer(Tile to) {
 
-        if (playerState == PlayerState.STATIONARY)
+        if (playerState != PlayerState.MOVING)
         {
             if (this.validMovement(to))
             {
-                playerState = PlayerState.MOVING;
+
+                if(to.GetComponent<Teleporter>() != null && current.GetComponent<Teleporter>() != null)
+                {
+                    playerState = PlayerState.TELEPORTING;
+                }
+
                 /*TODO: FIX THIS UP*/
                 this.actionsPerformed++;
                 Vector3 newPosition = to.transform.position;
@@ -122,7 +127,16 @@ public class Level : MonoBehaviour {
                 this.current = to;
 
 				destoryMovementHints ();
-                StartCoroutine(MoveWithSpeed(this.player.gameObject, newPosition, 1f));
+
+                if (playerState == PlayerState.STATIONARY)
+                {
+                    playerState = PlayerState.MOVING;
+                    StartCoroutine(MoveWithSpeed(this.player.gameObject, newPosition, 1f, to));
+                }
+                else if(playerState == PlayerState.TELEPORTING)
+                {
+                    StartCoroutine(Teleport(this.player.gameObject, newPosition, to));
+                }
 
                 /*Trigger Traps!*/
                 var traps = to.GetComponents<Trap>();
@@ -134,15 +148,14 @@ public class Level : MonoBehaviour {
                     }
                 }
 
-
-                return true; ;
+                    return true; ;
             }
         }
 		return false;
 	}
 
 
-    IEnumerator MoveWithSpeed(GameObject objectToMove, Vector3 end, float speed)
+    IEnumerator MoveWithSpeed(GameObject objectToMove, Vector3 end, float speed, Tile to)
     {
         while(objectToMove.transform.position != end)
         {
@@ -152,5 +165,27 @@ public class Level : MonoBehaviour {
         }
         playerState = PlayerState.STATIONARY;
 		createMovementHints ();
+
+        // Check if we have arrived at a teleporter, automatically teleport to the connected tile
+        var teleporter = to.GetComponent<Teleporter>();
+        if (teleporter != null)
+        {
+            Tile dest = teleporter.destination();
+            playerState = PlayerState.TELEPORTING;
+            movePlayer(dest);
+        }
+    }
+
+    IEnumerator Teleport(GameObject objectToMove, Vector3 end, Tile to)
+    {
+        while (objectToMove.transform.position != end)
+        {
+            // TODO: Create teleporting effect
+            objectToMove.transform.position = end;
+            yield return new WaitForEndOfFrame();
+        }
+
+        playerState = PlayerState.STATIONARY;
+        createMovementHints();
     }
 }
