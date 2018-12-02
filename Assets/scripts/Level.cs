@@ -36,6 +36,8 @@ public class Level : MonoBehaviour {
 	public GameObject movementHintPrefab;
 	public GameObject teleportHintPrefab;
 
+    public EndLevel endLevelUI;
+
     //public int playerState = (int) PlayerState.stationary;
 
 	public void Start() {
@@ -139,16 +141,6 @@ public class Level : MonoBehaviour {
                     StartCoroutine(Teleport(this.player.gameObject, newPosition, to));
                 }
 
-                /*Trigger Traps!*/
-                //var traps = to.GetComponents<Trap>();
-                //foreach (var trap in traps)
-                //{
-                //    if (!trap.activated())
-                //    {
-                //        trap.activate();
-                //    }
-                //}
-
                     return true; ;
             }
         }
@@ -188,6 +180,13 @@ public class Level : MonoBehaviour {
                 killed_prisoners++;
                 markTrap(to);
             }
+        }
+
+        if (this.current == this.end)
+        {
+            // TODO: Calculate actual star rating
+            endLevelUI.gameObject.SetActive(true);
+            endLevelUI.levelOver(true, 3);
         }
     }
 
