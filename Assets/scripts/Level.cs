@@ -21,6 +21,17 @@ public class Level : MonoBehaviour {
 	public int killed_prisoners = 0;
 	public int traps_triggered = 0;
 
+    enum PlayerState
+    {
+        STATIONARY,
+        MOVING,
+        TELEPORTING
+    }
+
+    PlayerState playerState = PlayerState.STATIONARY;
+
+    //public int playerState = (int) PlayerState.stationary;
+
 	public void Start() {
 		Level.instance = this;
 		Debug.Log ("Start is " + start.name);
@@ -46,24 +57,46 @@ public class Level : MonoBehaviour {
 	}
 
 	public bool movePlayer(Tile to) {
-		if (this.validMovement (to)) {
-			/*TODO: FIX THIS UP*/
-			this.actionsPerformed++;
-			Vector3 newPosition = to.transform.position;
-			this.current = to;
-			this.player.transform.position = newPosition;
 
-			/*Trigger Traps!*/
-			var traps = to.GetComponents<Trap> ();
-			foreach (var trap in traps) {
-				if (!trap.activated ()) {
-					trap.activate ();
-				}
-			}
+        if (playerState == PlayerState.STATIONARY)
+        {
+            if (this.validMovement(to))
+            {
+                playerState = PlayerState.MOVING;
+                /*TODO: FIX THIS UP*/
+                this.actionsPerformed++;
+                Vector3 newPosition = to.transform.position;
+                newPosition.y = this.player.position.y;
+                this.current = to;
+
+                StartCoroutine(MoveWithSpeed(this.player.gameObject, newPosition, 1f));
+
+                /*Trigger Traps!*/
+                var traps = to.GetComponents<Trap>();
+                foreach (var trap in traps)
+                {
+                    if (!trap.activated())
+                    {
+                        trap.activate();
+                    }
+                }
 
 
-			return true;;
-		}
+                return true; ;
+            }
+        }
 		return false;
 	}
+
+
+    IEnumerator MoveWithSpeed(GameObject objectToMove, Vector3 end, float speed)
+    {
+        while(objectToMove.transform.position != end)
+        {
+            objectToMove.transform.LookAt(end);
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        playerState = PlayerState.STATIONARY;
+    }
 }
