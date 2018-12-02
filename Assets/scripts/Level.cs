@@ -15,6 +15,7 @@ public class Level : MonoBehaviour {
 	public Transform player;
 
 	public GameObject[] prisoners;
+    public GameObject trapMarkerPrefab;
 
 	/*Statistics*/
 	public int actionsPerformed = 0;
@@ -182,6 +183,10 @@ public class Level : MonoBehaviour {
             if (!trap.activated())
             {
                 trap.activate();
+
+                prisoners[killed_prisoners].GetComponent<Prisoner>().kill();
+                killed_prisoners++;
+                markTrap(to);
             }
         }
     }
@@ -197,5 +202,13 @@ public class Level : MonoBehaviour {
 
         playerState = PlayerState.STATIONARY;
         createMovementHints();
+    }
+
+    void markTrap(Tile tile)
+    {
+        GameObject trapMarker = GameObject.Instantiate(trapMarkerPrefab);
+        Vector3 position = tile.transform.position;
+        position.y += 0.14f;
+        trapMarker.transform.position = position;
     }
 }
