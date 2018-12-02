@@ -114,7 +114,7 @@ public class Level : MonoBehaviour {
         {
             if (this.validMovement(to))
             {
-
+                // If we are already on a teleporter and want to teleport back
                 if(to.GetComponent<Teleporter>() != null && current.GetComponent<Teleporter>() != null)
                 {
                     playerState = PlayerState.TELEPORTING;
@@ -139,14 +139,14 @@ public class Level : MonoBehaviour {
                 }
 
                 /*Trigger Traps!*/
-                var traps = to.GetComponents<Trap>();
-                foreach (var trap in traps)
-                {
-                    if (!trap.activated())
-                    {
-                        trap.activate();
-                    }
-                }
+                //var traps = to.GetComponents<Trap>();
+                //foreach (var trap in traps)
+                //{
+                //    if (!trap.activated())
+                //    {
+                //        trap.activate();
+                //    }
+                //}
 
                     return true; ;
             }
@@ -173,6 +173,16 @@ public class Level : MonoBehaviour {
             Tile dest = teleporter.destination();
             playerState = PlayerState.TELEPORTING;
             movePlayer(dest);
+        }
+
+        /*Trigger Traps!*/
+        var traps = to.GetComponents<Trap>();
+        foreach (var trap in traps)
+        {
+            if (!trap.activated())
+            {
+                trap.activate();
+            }
         }
     }
 

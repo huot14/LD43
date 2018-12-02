@@ -1385,6 +1385,7 @@ GameObject:
   - component: {fileID: 263345445}
   - component: {fileID: 263345444}
   - component: {fileID: 263345443}
+  - component: {fileID: 263345447}
   m_Layer: 8
   m_Name: tile_animated(Clone)
   m_TagString: Untagged
@@ -1404,7 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   right: {fileID: 1369198195}
-  down: {fileID: 852875555}
+  down: {fileID: 0}
   left: {fileID: 1840436867}
   up: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
@@ -1451,6 +1452,20 @@ Transform:
   m_Father: {fileID: 2014574978}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263345447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 263345442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79fdff71f4c6ae43be6d114c58efbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 1467396240}
+  trapMarkerPrefab: {fileID: 1964793742850826, guid: 47be6a2bf95e1e54fbffb3886aac2776,
+    type: 2}
 --- !u!1001 &265154132
 Prefab:
   m_ObjectHideFlags: 0
@@ -1619,7 +1634,7 @@ MonoBehaviour:
   right: {fileID: 712125317}
   down: {fileID: 1480102039}
   left: {fileID: 1767542811}
-  up: {fileID: 852875555}
+  up: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
 --- !u!65 &292145726
 BoxCollider:
@@ -3660,7 +3675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   right: {fileID: 1302102443}
   down: {fileID: 712125317}
-  left: {fileID: 852875555}
+  left: {fileID: 0}
   up: {fileID: 1369198195}
   center: {x: 0, y: 0, z: 0}
 --- !u!65 &719428460
@@ -4314,7 +4329,6 @@ GameObject:
   - component: {fileID: 852875558}
   - component: {fileID: 852875557}
   - component: {fileID: 852875556}
-  - component: {fileID: 852875555}
   m_Layer: 8
   m_Name: tile_animated(Clone)
   m_TagString: Untagged
@@ -4322,22 +4336,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &852875555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 852875554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1be803ef958d2b47816276f4e50109d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  right: {fileID: 719428459}
-  down: {fileID: 292145725}
-  left: {fileID: 1979318664}
-  up: {fileID: 263345443}
-  center: {x: 0, y: 0, z: 0}
 --- !u!65 &852875556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7247,6 +7245,23 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &1467396239 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1498488585316958, guid: e6a46b6c710aced448b64c21854c95b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1269126291}
+--- !u!114 &1467396240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1467396239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16778f109bee0bd48aae28b966550de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapType: 0
 --- !u!1 &1467446373
 GameObject:
   m_ObjectHideFlags: 0
@@ -10555,7 +10570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1be803ef958d2b47816276f4e50109d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  right: {fileID: 852875555}
+  right: {fileID: 0}
   down: {fileID: 1767542811}
   left: {fileID: 0}
   up: {fileID: 1840436867}
