@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 54e93f79f0e221345b23f02d4735b187
-timeCreated: 1543724545
+guid: c59f62262dba12647978e1afe4031d02
+timeCreated: 1543786667
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -27,8 +27,6 @@ ModelImporter:
     4300002: pSphere2
     4300004: pCylinder2
     4300006: pPyramid1
-    9500000: //RootNode
-    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -95,10 +93,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
