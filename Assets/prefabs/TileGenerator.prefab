@@ -54,4 +54,4 @@ MonoBehaviour:
   n: 3
   m: 4
   separationMultiplier: 1.1
-  tilePrefab: {fileID: 1408935693733858, guid: d7b970961c1f1bc4ebb51d96e3808bbc, type: 2}
+  tilePrefab: {fileID: 1594351946061860, guid: 999addbf4cc2edb40b473d8f710a9800, type: 2}
