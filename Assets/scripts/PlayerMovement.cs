@@ -33,22 +33,18 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Did Hit");
             Debug.Log("Tile at: " + hit.transform.position);
 
-            movePlayer(hit.transform.position);
+			Tile tile = hit.transform.gameObject.GetComponent<Tile>();
+			if (Level.instance != null) {
+				if (Level.instance.movePlayer (tile)) {
+					Debug.Log ("Move completed!");
+				}
+			} else {
+				Debug.LogError ("Level singleton doesn't exist!");
+			}
         }
         else
         {
             Debug.Log("Did not Hit");
         }
     }
-
-    void movePlayer(Vector3 newPosition)
-    {
-
-        newPosition.y = transform.position.y;
-        transform.position = newPosition;
-
-        
-
-    }
-
 }

@@ -4,9 +4,47 @@ using UnityEngine;
 
 [System.Serializable]
 public class Level : MonoBehaviour {
+
+	public static Level instance;
+
 	public Tile start;
+	public Tile end;
+	Tile current;
+
+	public Transform player;
 
 	public void Start() {
+		Level.instance = this;
 		Debug.Log ("Start is " + start.name);
+		Debug.Log ("End is " + end.name);
+		this.current = start;
+
+		/* Create the player located at start */
+	}
+
+	public bool validMovement(Tile to) {
+		var candidates = current.candidateMoves ();
+		bool valid = false;
+		foreach (ValidMove candidate in candidates) {
+			if (candidate.tile == to) {
+				valid = true;
+				break;
+			}
+		}
+
+		return valid;
+	}
+
+	public bool movePlayer(Tile to) {
+		if (this.validMovement (to)) {
+			/*TODO: FIX THIS UP*/
+			Vector3 newPosition = to.transform.position;
+			this.current = to;
+			this.player.transform.position = newPosition;
+			return true;
+			//newPosition.y = transform.position.y;
+			//transform.position = newPosition;
+		}
+		return false;
 	}
 }
