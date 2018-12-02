@@ -11,6 +11,7 @@ public class Level : MonoBehaviour {
 	public Tile end;
 	Tile current;
 
+	public GameObject playerPrefab;
 	public Transform player;
 
 	public GameObject[] prisoners;
@@ -30,6 +31,10 @@ public class Level : MonoBehaviour {
 
     PlayerState playerState = PlayerState.STATIONARY;
 
+	ArrayList movementHints = new ArrayList ();
+	public GameObject movementHintPrefab;
+	public GameObject teleportHintPrefab;
+
     //public int playerState = (int) PlayerState.stationary;
 
 	public void Start() {
@@ -39,8 +44,55 @@ public class Level : MonoBehaviour {
 
 		this.current = start;
 		this.total_prisoners = this.prisoners.Length;
+		createMovementHints ();
 
 		/* Create the player located at start */
+	}
+	public void destoryMovementHints() {
+		/*TODO: If movement hints already exists signal them transition out and remove from the array*/
+		foreach (GameObject obj in movementHints) {
+			GameObject.Destroy (obj);		
+		}
+	}
+
+	public void createMovementHints() {
+		Quaternion right = Quaternion.Euler (0, 270, 0);
+		Quaternion up = Quaternion.Euler (0, 0, 0);
+		Quaternion left = Quaternion.Euler (0, 90, 0);
+		Quaternion down = Quaternion.Euler (0, 180, 0);
+		destoryMovementHints ();
+
+		var candidates = this.current.candidateMoves ();
+		foreach (var candidate in candidates) {
+			if (candidate.type != MovementType.TELEPORT) {
+				GameObject hint = GameObject.Instantiate (movementHintPrefab);
+				Vector3 position = candidate.tile.transform.position;
+				position.y += 0.2f;
+				hint.transform.position = position;
+				movementHints.Add (hint);
+
+				switch (candidate.type) {
+				case MovementType.RIGHT:
+					hint.transform.rotation = right;
+					break;
+				case MovementType.DOWN:
+					hint.transform.rotation = down;
+					break;
+				case MovementType.LEFT:
+					hint.transform.rotation = left;
+					break;
+				case MovementType.UP:
+					hint.transform.rotation = up;
+					break;
+				}
+			} else {
+				GameObject hint = GameObject.Instantiate (teleportHintPrefab);
+				Vector3 position = candidate.tile.transform.position;
+				position.y += 1.0f;
+				hint.transform.position = position;
+				movementHints.Add (hint);
+			}
+		}
 	}
 
 	public bool validMovement(Tile to) {
@@ -69,6 +121,7 @@ public class Level : MonoBehaviour {
                 newPosition.y = this.player.position.y;
                 this.current = to;
 
+				destoryMovementHints ();
                 StartCoroutine(MoveWithSpeed(this.player.gameObject, newPosition, 1f));
 
                 /*Trigger Traps!*/
@@ -98,5 +151,6 @@ public class Level : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         playerState = PlayerState.STATIONARY;
+		createMovementHints ();
     }
 }
