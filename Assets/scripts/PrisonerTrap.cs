@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Trap {
-	bool activated();
-	void activate();
-	
-}
-
 [RequireComponent(typeof(Tile))]
-public class BasicTrap : MonoBehaviour {
+public class PrisonerTrap : MonoBehaviour, Trap {
 	bool _activated = false;
 
 	public bool activated() {
@@ -22,7 +16,5 @@ public class BasicTrap : MonoBehaviour {
 			Level.instance.traps_triggered++;
 			this._activated = true;
 		}
-
-
 	}
 }

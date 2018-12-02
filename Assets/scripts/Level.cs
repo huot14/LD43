@@ -13,11 +13,21 @@ public class Level : MonoBehaviour {
 
 	public Transform player;
 
+	public GameObject[] prisoners;
+
+	/*Statistics*/
+	public int actionsPerformed = 0;
+	public int total_prisoners = 0;
+	public int killed_prisoners = 0;
+	public int traps_triggered = 0;
+
 	public void Start() {
 		Level.instance = this;
 		Debug.Log ("Start is " + start.name);
 		Debug.Log ("End is " + end.name);
+
 		this.current = start;
+		this.total_prisoners = this.prisoners.Length;
 
 		/* Create the player located at start */
 	}
@@ -38,12 +48,21 @@ public class Level : MonoBehaviour {
 	public bool movePlayer(Tile to) {
 		if (this.validMovement (to)) {
 			/*TODO: FIX THIS UP*/
+			this.actionsPerformed++;
 			Vector3 newPosition = to.transform.position;
 			this.current = to;
 			this.player.transform.position = newPosition;
-			return true;
-			//newPosition.y = transform.position.y;
-			//transform.position = newPosition;
+
+			/*Trigger Traps!*/
+			var traps = to.GetComponents<Trap> ();
+			foreach (var trap in traps) {
+				if (!trap.activated ()) {
+					trap.activate ();
+				}
+			}
+
+
+			return true;;
 		}
 		return false;
 	}
