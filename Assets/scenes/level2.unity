@@ -2468,6 +2468,31 @@ Prefab:
       propertyPath: m_Name
       value: EndLevelUI
       objectReference: {fileID: 0}
+    - target: {fileID: 224169707488307682, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 438.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 224169707488307682, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 224675368043432006, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 125.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224169707488307682, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -148.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 224675368043432006, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 152
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 826fec6b8c84f5b4eb01295ae6e9d22e, type: 2}
   m_IsPrefabParent: 0
