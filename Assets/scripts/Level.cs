@@ -61,6 +61,8 @@ public class Level : MonoBehaviour {
 	public GameObject movementHintPrefab;
 	public GameObject teleportHintPrefab;
 
+    public EndLevel endLevelUI;
+
     //public int playerState = (int) PlayerState.stationary;
 
 	public void Start() {
@@ -168,6 +170,7 @@ public class Level : MonoBehaviour {
                 }
 
                     return true;
+
             }
         }
 		return false;
@@ -204,6 +207,13 @@ public class Level : MonoBehaviour {
 				this.killPrisoner ();
                 markTrap(to);
             }
+        }
+
+        if (this.current == this.end)
+        {
+            // TODO: Calculate actual star rating
+            endLevelUI.gameObject.SetActive(true);
+            endLevelUI.levelOver(true, 3);
         }
 
 		/*Color Transition Logic*/
