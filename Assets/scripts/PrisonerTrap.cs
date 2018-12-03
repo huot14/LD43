@@ -15,6 +15,9 @@ public class PrisonerTrap : MonoBehaviour, Trap {
 			Debug.Log ("A trap was triggered!");
 			Level.instance.traps_triggered++;
 			this._activated = true;
+			if (SoundManager.instance != null) {
+				SoundManager.instance.playEffect (SoundManager.SoundEffect.TRAP);
+			}
 		}
 	}
 }

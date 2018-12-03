@@ -283,6 +283,10 @@ public class Level : MonoBehaviour {
 
     IEnumerator Teleport(GameObject objectToMove, Vector3 end, Tile to)
     {
+		if (SoundManager.instance != null) {
+			SoundManager.instance.playEffect (SoundManager.SoundEffect.TELEPORT);
+		}
+
         while (objectToMove.transform.position != end)
         {
             // TODO: Create teleporting effect
