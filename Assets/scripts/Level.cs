@@ -208,11 +208,11 @@ public class Level : MonoBehaviour {
                 markTrap(to);
             }
         }
-        //TODO FIX SCORING
+        // END OF LEVEL(WIN)
         if (this.current == this.end)
         {
             endLevelUI.gameObject.SetActive(true);
-            endLevelUI.levelOver(true, 3);
+            endLevelUI.levelOver(true, score);
             playerState = PlayerState.MOVING;
         }
 
@@ -252,14 +252,14 @@ public class Level : MonoBehaviour {
 	public void killPrisoner() {
 		if (this.prisoners_idx < this.prisoners.Length) {
 			prisoners[prisoners_idx].GetComponent<Prisoner>().kill();
-			killed_prisoners++;
+            _killed_prisoners++;
 			this.prisoners_idx++;
 
-            //TODO FIX SCORING
-            if(0 <= 0)
+            //END OF LEVEL(LOSE)
+            if (score <= 0)
             {
                 endLevelUI.gameObject.SetActive(true);
-                endLevelUI.levelOver(false, 0);
+                endLevelUI.levelOver(false, score);
                 playerState = PlayerState.MOVING;
             }
 		}

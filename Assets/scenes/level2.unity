@@ -983,9 +983,30 @@ Prefab:
       propertyPath: prisoners.Array.data[1]
       value: 
       objectReference: {fileID: 1962435132}
+    - target: {fileID: 114113694666750582, guid: cd726799d9464a74ca4e14db45aaa464,
+        type: 2}
+      propertyPath: scoreCalculator
+      value: 
+      objectReference: {fileID: 381906505}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd726799d9464a74ca4e14db45aaa464, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &381906504 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1081723266122092, guid: cd726799d9464a74ca4e14db45aaa464,
+    type: 2}
+  m_PrefabInternal: {fileID: 381906503}
+--- !u!114 &381906505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381906504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6a8057c883a7f40add202375a050b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460529233
 GameObject:
   m_ObjectHideFlags: 0
