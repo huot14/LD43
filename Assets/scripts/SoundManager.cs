@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour {
 			Object.DontDestroyOnLoad (this);
 			SoundManager.instance = this;
 		} else {
-			DestroyObject (this);
+			this.gameObject.SetActive (false);
 		}
 	}
 
