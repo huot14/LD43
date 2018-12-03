@@ -87,7 +87,7 @@ public class Level : MonoBehaviour {
 
 		this.current = start;
 		createMovementHints ();
-		nearbyTraps = NearbyTraps.count (1, start);
+
 
 		/* Create the player located at start */
 	}
@@ -200,8 +200,6 @@ public class Level : MonoBehaviour {
         }
         playerState = PlayerState.STATIONARY;
 		createMovementHints ();
-		/*Update trap counter*/
-		this.nearbyTraps = NearbyTraps.count (1, to);
 
         // Check if we have arrived at a teleporter, automatically teleport to the connected tile
         var teleporter = to.GetComponent<Teleporter>();
@@ -223,7 +221,7 @@ public class Level : MonoBehaviour {
                 markTrap(to);
             }
         }
-			
+		nearbyTraps = NearbyTraps.count (1, to);
 
 
         // END OF LEVEL(WIN)
