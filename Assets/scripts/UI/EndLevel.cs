@@ -13,6 +13,8 @@ public class EndLevel : MonoBehaviour {
     public Image star2;
     public Image star3;
     public Text message;
+	public Text storyText;
+	public Text traps;
 
 	void Start ()
     {
@@ -21,13 +23,26 @@ public class EndLevel : MonoBehaviour {
         star1.gameObject.SetActive(false);
         star2.gameObject.SetActive(false);
         star3.gameObject.SetActive(false);
+		storyText.gameObject.SetActive (false);
 
         replay.onClick.AddListener(replayLevel);
         next.onClick.AddListener(nextLevel);
 	}
+
+	void Update() {
+		if (this.traps != null && Level.instance != null) {
+			this.traps.text = Level.instance.nearbyTraps + " Traps";
+		}
+	}
 	
     public void levelOver(bool win, int starRating)
     {
+		if (Level.instance != null && Level.instance.endText != null) {
+			var text = ((EndLevelText)Level.instance.endText).message ();
+			this.storyText.text = text;
+			this.storyText.gameObject.SetActive (true);
+		}
+
         if(starRating >= 1)
         {
             star1.gameObject.SetActive(true);

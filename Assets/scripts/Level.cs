@@ -15,6 +15,15 @@ public class Level : MonoBehaviour {
 	public Tile end;
 	Tile current;
 
+	private int _nearbyTraps = 0;
+	public int nearbyTraps {
+		set {
+			_nearbyTraps = value;
+			Debug.Log ("Nearby traps is now " + value);
+		}
+		get { return _nearbyTraps; }
+	}
+
 	public GameObject playerPrefab;
 	public Transform player;
 
@@ -29,6 +38,9 @@ public class Level : MonoBehaviour {
 			return 0;
 		}
 	}
+
+	public Object endText;
+
 	public GameObject[] prisoners;
 	int prisoners_idx = 0;
     public GameObject trapMarkerPrefab;
@@ -75,6 +87,7 @@ public class Level : MonoBehaviour {
 
 		this.current = start;
 		createMovementHints ();
+		nearbyTraps = NearbyTraps.count (1, start);
 
 		/* Create the player located at start */
 	}
@@ -115,7 +128,7 @@ public class Level : MonoBehaviour {
 					hint.transform.rotation = up;
 					break;
 				}
-			} else {
+			} else /*candidate.type == MovementType.TELEPORT*/ {
 				GameObject hint = GameObject.Instantiate (teleportHintPrefab);
 				Vector3 position = candidate.tile.transform.position;
 				position.y += 1.0f;
@@ -187,6 +200,8 @@ public class Level : MonoBehaviour {
         }
         playerState = PlayerState.STATIONARY;
 		createMovementHints ();
+		/*Update trap counter*/
+		this.nearbyTraps = NearbyTraps.count (1, to);
 
         // Check if we have arrived at a teleporter, automatically teleport to the connected tile
         var teleporter = to.GetComponent<Teleporter>();
@@ -208,6 +223,9 @@ public class Level : MonoBehaviour {
                 markTrap(to);
             }
         }
+			
+
+
         // END OF LEVEL(WIN)
         if (this.current == this.end)
         {
@@ -276,6 +294,8 @@ public class Level : MonoBehaviour {
 
         playerState = PlayerState.STATIONARY;
         createMovementHints();
+		/*Update trap counter*/
+		this.nearbyTraps = NearbyTraps.count (1, to);
     }
 
     void markTrap(Tile tile)
