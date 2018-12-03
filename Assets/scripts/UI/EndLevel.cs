@@ -9,12 +9,18 @@ public class EndLevel : MonoBehaviour {
     public Button replay;
     public Button next;
 
+    public Image star1;
+    public Image star2;
+    public Image star3;
     public Text message;
 
 	void Start ()
     {
         next.gameObject.SetActive(false);
         message.gameObject.SetActive(false);
+        star1.gameObject.SetActive(false);
+        star2.gameObject.SetActive(false);
+        star3.gameObject.SetActive(false);
 
         replay.onClick.AddListener(replayLevel);
         next.onClick.AddListener(nextLevel);
@@ -22,12 +28,23 @@ public class EndLevel : MonoBehaviour {
 	
     public void levelOver(bool win, int starRating)
     {
-        //TODO: make this graphical
-        message.text = starRating + " Stars";
+        if(starRating >= 1)
+        {
+            star1.gameObject.SetActive(true);
+        }
+        if (starRating >= 2)
+        {
+            star2.gameObject.SetActive(true);
+        }
+        if(starRating >= 3)
+        {
+            star3.gameObject.SetActive(true);
+        }
 
         //Failed to complete the level, must retry
         if(!win)
         {
+            message.gameObject.SetActive(true);
             next.interactable = false;
         }
     }
@@ -53,7 +70,6 @@ public class EndLevel : MonoBehaviour {
     public void activateEndUI()
     {
         next.gameObject.SetActive(true);
-        message.gameObject.SetActive(true);
     }
 
 

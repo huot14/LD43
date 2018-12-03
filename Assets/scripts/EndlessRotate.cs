@@ -8,7 +8,7 @@ public class EndlessRotate : MonoBehaviour {
     float speed;
 
     Transform sprite;
-    Vector3 rotation = new Vector3(0.0f,0.0f,1.0f);
+    Vector3 rotation = new Vector3(0.0f,1.0f,0.0f);
 
 	// Use this for initialization
 	void Start ()
