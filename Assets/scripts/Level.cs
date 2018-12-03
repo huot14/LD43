@@ -208,12 +208,12 @@ public class Level : MonoBehaviour {
                 markTrap(to);
             }
         }
-
+        //TODO FIX SCORING
         if (this.current == this.end)
         {
-            // TODO: Calculate actual star rating
             endLevelUI.gameObject.SetActive(true);
             endLevelUI.levelOver(true, 3);
+            playerState = PlayerState.MOVING;
         }
 
 		/*Color Transition Logic*/
@@ -249,12 +249,19 @@ public class Level : MonoBehaviour {
 			
     }
 	
-
 	public void killPrisoner() {
 		if (this.prisoners_idx < this.prisoners.Length) {
 			prisoners[prisoners_idx].GetComponent<Prisoner>().kill();
 			killed_prisoners++;
 			this.prisoners_idx++;
+
+            //TODO FIX SCORING
+            if(0 <= 0)
+            {
+                endLevelUI.gameObject.SetActive(true);
+                endLevelUI.levelOver(false, 0);
+                playerState = PlayerState.MOVING;
+            }
 		}
 	}
 
