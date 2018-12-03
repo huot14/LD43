@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
         {
             SceneManager.LoadScene("level2");
         }
-        else if (dropdown.value == 1)
+        else if (dropdown.value == 2)
         {
             SceneManager.LoadScene("level3");
         }
