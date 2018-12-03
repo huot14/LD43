@@ -44,11 +44,11 @@ public class TileGenerator : MonoBehaviour {
 					Tile neighbour = tiles [idx_neighbour].GetComponent<Tile>();
 					self.right = neighbour;
 				}
-				/*down*/
+				/*up*/
 				if (row + 1 < rows) {
 					var idx_neighbour = ((row + 1) * columns) + column;
 					Tile neighbour = tiles [idx_neighbour].GetComponent<Tile>();
-					self.down = neighbour;
+					self.up = neighbour;
 				}
 				/*left*/
 				if (column - 1 >= 0) {
@@ -56,11 +56,11 @@ public class TileGenerator : MonoBehaviour {
 					Tile neighbour = tiles [idx_neighbour].GetComponent<Tile>();
 					self.left = neighbour;
 				}
-				/*up*/
+				/*down*/
 				if (row - 1 >= 0) {
 					var idx_neighbour = ((row - 1) * columns) + column;
 					Tile neighbour = tiles [idx_neighbour].GetComponent<Tile>();
-					self.up = neighbour;
+					self.down = neighbour;
 				}
 			}
 		}

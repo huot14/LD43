@@ -65,13 +65,13 @@ public class Level : MonoBehaviour {
 
 	public void Start() {
 		Level.instance = this;
+		this.total_prisoners = this.prisoners.Length;
+
 		Debug.Log ("Start is " + start.name);
 		Debug.Log ("End is " + end.name);
 		Debug.Log ("Score is " + this.score);
 
 		this.current = start;
-
-		this.total_prisoners = this.prisoners.Length;
 		createMovementHints ();
 
 		/* Create the player located at start */
@@ -232,7 +232,7 @@ public class Level : MonoBehaviour {
 				}
 			}
 		} else if (maybeFromColor != null && maybeToColor != null) {
-			if (maybeFromColor.color != maybeToColor.color) {
+			if (maybeFromColor.color.color != maybeToColor.color.color) {
 				this.killPrisoner ();
 			}
 		}
