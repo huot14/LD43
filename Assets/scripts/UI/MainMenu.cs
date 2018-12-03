@@ -30,6 +30,14 @@ public class MainMenu : MonoBehaviour {
         {
             SceneManager.LoadScene("level3");
         }
+		else if (dropdown.value == 3)
+		{
+			SceneManager.LoadScene("level4");
+		}
+		else if (dropdown.value == 4)
+		{
+			SceneManager.LoadScene("level5");
+		}
     }
 
 
