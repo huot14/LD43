@@ -88,9 +88,11 @@ public class Level : MonoBehaviour {
 		this.current = start;
 		createMovementHints ();
 
+        nearbyTraps = NearbyTraps.count(1, this.current);
 
-		/* Create the player located at start */
-	}
+
+        /* Create the player located at start */
+    }
 	public void destoryMovementHints() {
 		/*TODO: If movement hints already exists signal them transition out and remove from the array*/
 		foreach (GameObject obj in movementHints) {

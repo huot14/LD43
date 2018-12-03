@@ -1123,7 +1123,7 @@ MonoBehaviour:
   failure: Just another subject not understanding the importance of our work
   stars1: 
   stars2: 
-  stars3: It's pleasent to receive a 50 percentile subject
+  stars3: It's pleasant to receive a 50th percentile subject
 --- !u!1001 &907226744
 Prefab:
   m_ObjectHideFlags: 0
@@ -1260,7 +1260,7 @@ Transform:
   m_Father: {fileID: 32147371}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &966119392
+--- !u!1001 &970042305
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2430,7 +2430,7 @@ Transform:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114971842191487514, guid: 826fec6b8c84f5b4eb01295ae6e9d22e,
     type: 2}
-  m_PrefabInternal: {fileID: 966119392}
+  m_PrefabInternal: {fileID: 970042305}
   m_Script: {fileID: 11500000, guid: 493a0089072a40349b20d04ed4334e6f, type: 3}
 --- !u!1 &1824649330
 GameObject:
