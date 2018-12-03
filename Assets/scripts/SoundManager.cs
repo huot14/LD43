@@ -18,7 +18,12 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	void Start() {
-		instance = this;
+		if (SoundManager.instance == null) {
+			Object.DontDestroyOnLoad (this);
+			SoundManager.instance = this;
+		} else {
+			DestroyObject (this);
+		}
 	}
 
 	public void playEffect(SoundEffect effect) {
