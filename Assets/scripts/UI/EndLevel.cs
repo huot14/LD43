@@ -13,7 +13,9 @@ public class EndLevel : MonoBehaviour {
 
 	void Start ()
     {
-        gameObject.SetActive(false);
+        next.gameObject.SetActive(false);
+        message.gameObject.SetActive(false);
+
         replay.onClick.AddListener(replayLevel);
         next.onClick.AddListener(nextLevel);
 	}
@@ -45,6 +47,13 @@ public class EndLevel : MonoBehaviour {
         {
             SceneManager.LoadScene("main");
         }
+    }
+
+
+    public void activateEndUI()
+    {
+        next.gameObject.SetActive(true);
+        message.gameObject.SetActive(true);
     }
 
 

@@ -211,7 +211,7 @@ public class Level : MonoBehaviour {
         // END OF LEVEL(WIN)
         if (this.current == this.end)
         {
-            endLevelUI.gameObject.SetActive(true);
+            endLevelUI.activateEndUI();
             endLevelUI.levelOver(true, score);
             playerState = PlayerState.MOVING;
         }
@@ -258,7 +258,7 @@ public class Level : MonoBehaviour {
             //END OF LEVEL(LOSE)
             if (score <= 0)
             {
-                endLevelUI.gameObject.SetActive(true);
+                endLevelUI.activateEndUI();
                 endLevelUI.levelOver(false, score);
                 playerState = PlayerState.MOVING;
             }
