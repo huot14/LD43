@@ -242,7 +242,7 @@ public class Level : MonoBehaviour {
 				}
 			}
 		} else if (maybeFromColor != null && maybeToColor != null) {
-			if (maybeFromColor.color != maybeToColor.color) {
+			if (maybeFromColor.color.color != maybeToColor.color.color) {
 				this.killPrisoner ();
 			}
 		}
