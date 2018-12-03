@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
 public interface OnStep {
@@ -69,6 +71,7 @@ public class Tile : MonoBehaviour {
 		return set;
 	}
 
+	#if UNITY_EDITOR
 	void OnDrawGizmosSelected() {
 		Transform transform = this.GetComponent<Transform> ();
 		Gizmos.DrawSphere (transform.position - this.center, 0.1f);
@@ -98,6 +101,7 @@ public class Tile : MonoBehaviour {
 			Gizmos.DrawLine (_from, _to);
 		}
 	}
+	#endif
 
 }
 	
