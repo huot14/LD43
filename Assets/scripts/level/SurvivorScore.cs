@@ -11,9 +11,9 @@ public class SurvivorScore : MonoBehaviour, ScoreCalculator {
 
 		var level = Level.instance;
 
-		var total_prisoners = level.total_prisoners;
-		var killed_prisoners = level.killed_prisoners;
+		var total_prisoners = (float) level.total_prisoners;
+		var killed_prisoners = (float) level.killed_prisoners;
 
-		return ((total_prisoners - killed_prisoners) / total_prisoners) * 3;
+		return (int) (((total_prisoners - killed_prisoners) / total_prisoners) * 3f);
 	}
 }
