@@ -8,6 +8,7 @@ public class RatingBasedText : MonoBehaviour, EndLevelText {
 	public string stars1 = "";
 	public string stars2 = "";
 	public string stars3 = "";
+	public string stars4 = "";
 
 	public string message() {
 		Level level = Level.instance;
@@ -25,6 +26,8 @@ public class RatingBasedText : MonoBehaviour, EndLevelText {
 			return stars2;
 		case 3:
 			return stars3;
+		case 4:
+			return stars4;
 		default:
 			return "";
 		}

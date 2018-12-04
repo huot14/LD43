@@ -13,8 +13,9 @@ public class Level4Score : MonoBehaviour, ScoreCalculator {
 
 		switch (killed) {
 		case 0:
-			return 3;
+			return 4;
 		case 1:
+			return 3;
 		case 2:
 			return 2;
 		case 3:

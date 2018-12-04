@@ -12,6 +12,7 @@ public class EndLevel : MonoBehaviour {
     public Image star1;
     public Image star2;
     public Image star3;
+	public Image star4;
     public Image backdrop;
     public Text message;
 	public Text storyText;
@@ -24,6 +25,7 @@ public class EndLevel : MonoBehaviour {
         star1.gameObject.SetActive(false);
         star2.gameObject.SetActive(false);
         star3.gameObject.SetActive(false);
+		star4.gameObject.SetActive(false);
 		storyText.gameObject.SetActive (false);
         backdrop.gameObject.SetActive(false);
 
@@ -58,6 +60,10 @@ public class EndLevel : MonoBehaviour {
         {
             star3.gameObject.SetActive(true);
         }
+		if(starRating >= 4)
+		{
+			star4.gameObject.SetActive(true);
+		}
 
         //Failed to complete the level, must retry
         if(!win)
